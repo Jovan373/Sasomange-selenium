@@ -140,7 +140,8 @@ public class SasomangeTests extends BaseTest {
         Assert.assertEquals("Odabir kategorije\n" + "Vozila\n" + "Automobili\n" + "Polovni automobili"
                 ,dodajOglasOOglasuSectionPageSasomange.chosenCategoriesAndSubcategoriesTextGetText());
         dodajOglasOOglasuSectionPageSasomange.opstiPodaciOVozilu();
-
+         dodajOglasOOglasuSectionPageSasomange.nazadButtonHide();
+        dodajOglasOOglasuSectionPageSasomange.markaAutomobilaDropdownMenuSelect();
 
     }
 }
