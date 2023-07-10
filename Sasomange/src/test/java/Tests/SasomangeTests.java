@@ -142,6 +142,7 @@ public class SasomangeTests extends BaseTest {
         dodajOglasOOglasuSectionPageSasomange.opstiPodaciOVozilu();
          dodajOglasOOglasuSectionPageSasomange.nazadButtonHide();
         dodajOglasOOglasuSectionPageSasomange.markaAutomobilaDropdownMenuSelect();
-
+         dodajOglasOOglasuSectionPageSasomange.modelDropdownAccessibleAftermarkaAutomobilaRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.gorivoDropdownMenuAccessibleAfterModelPickRandomClick();
     }
 }
