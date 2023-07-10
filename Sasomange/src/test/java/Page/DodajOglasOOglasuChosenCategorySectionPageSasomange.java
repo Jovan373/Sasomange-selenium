@@ -64,15 +64,44 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
         jsExecutor.executeScript("arguments[0].style.display = 'none';", napredIButton);
     }
 
-    public void markaAutomobilaDropdownMenuSelect() {
+public void markaAutomobilaDropdownmenuRandomClick() {
         wdWait.until(ExpectedConditions.visibilityOf(markaAutomobilaDropdownMenu));
-       markaAutomobilaDropdownMenu.click();
+        markaAutomobilaDropdownMenu.click();
         wdWait.until(ExpectedConditions.visibilityOf(markeAutomobilaOptionsUL));
         WebElement[] checkboxMarke = markeAutomobilaOptionsUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String markeOptions = markeAutomobilaOptionsUL.getText();
+        System.out.println("Marke automobila all options to pick: " + markeOptions);
         Random r = new Random();
         int randomIndex = r.nextInt(checkboxMarke.length);
-        System.out.println(randomIndex);
-        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxMarke[randomIndex]),0,200).perform();
+        String randomPickMarke = checkboxMarke[randomIndex].getText();
+        System.out.println("Random pick marke automobila: " + randomPickMarke );
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxMarke[randomIndex]),0,100).perform();
         wdWait.until(ExpectedConditions.elementToBeClickable(checkboxMarke[randomIndex])).click();
+    }
+    public void modelDropdownAccessibleAftermarkaAutomobilaRandomClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(modelAccessibleAftermarkaAutomobilaPick)).click();
+        wdWait.until(ExpectedConditions.visibilityOf(modelDropdownMenuUL));
+        WebElement[]checkboxModeli = modelDropdownMenuUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String modeliOptions = modelDropdownMenuUL.getText();
+        System.out.println("Modeli all options to pick: " + modeliOptions);
+        Random m = new Random();
+        int randomIndex = m.nextInt(checkboxModeli.length);
+        String randomPickModeli = checkboxModeli[randomIndex].getText();
+        System.out.println("Random pick from modeli options: " + randomPickModeli);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxModeli[randomIndex]),0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxModeli[randomIndex])).click();
+    }
+    public void gorivoDropdownMenuAccessibleAfterModelPickRandomClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(gorivoDropdownMenuAccessibleAfterModelPick)).click();
+        wdWait.until(ExpectedConditions.visibilityOf(gorivoDropdownMenuAccessibleAfterModelPickUL));
+        WebElement[]checkboxVrsteGoriva = gorivoDropdownMenuAccessibleAfterModelPickUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String gorivoOptions = gorivoDropdownMenuAccessibleAfterModelPickUL.getText();
+        System.out.println("Gorivo all options to pick: " + gorivoOptions);
+        Random m = new Random();
+        int randomIndex = m.nextInt(checkboxVrsteGoriva.length);
+        String randomPickModeli = checkboxVrsteGoriva[randomIndex].getText();
+        System.out.println("Random pick from modeli options: " + randomPickModeli);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxVrsteGoriva[randomIndex]),0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxVrsteGoriva[randomIndex])).click();
     }
 }
