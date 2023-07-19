@@ -65,8 +65,8 @@ public class SasomangeTests extends BaseTest {
          Assert.assertTrue(ulogujSePageSasomange.prijaviSeSasomangeTextIsDisplayed());
          Assert.assertEquals("Prijavi se\n" + "Prijavi se na svoj Sasomange.rs nalog!",
                    ulogujSePageSasomange.prijaviSeSasomangeTextGetText());
-         ulogujSePageSasomange.imejl_KorisnickoIme_InputFieldSendKeys("Use your own registered email");
-         ulogujSePageSasomange.lozinka_InputField("Your own");
+         ulogujSePageSasomange.imejl_KorisnickoIme_InputFieldSendKeys("jojel.7233@gmail.com");
+         ulogujSePageSasomange.lozinka_InputField("Aa#@+ .1");
          ulogujSePageSasomange.eyeIconClick();
          ulogujSePageSasomange.prijaviSeButton_PrimaryClick();
          Assert.assertTrue(loggedInUserHomeSasomangePage.uspesnaPrijavaTimeLimitedMessageIsDisplayed());
@@ -120,8 +120,8 @@ public class SasomangeTests extends BaseTest {
     }
     @Test public void placeAnAddWhileLoggedInSasomange(){
         homePageSasomange.ulogujSeButtonClick();
-        ulogujSePageSasomange.imejl_KorisnickoIme_InputFieldSendKeys("Use your own registered email");
-        ulogujSePageSasomange.lozinka_InputField("Your own");
+        ulogujSePageSasomange.imejl_KorisnickoIme_InputFieldSendKeys("Registered mail");
+        ulogujSePageSasomange.lozinka_InputField("Valid password");
         ulogujSePageSasomange.prijaviSeButton_PrimaryClick();
         loggedInUserHomeSasomangePage.dodajOglasButtonClick();
         cokieBotPageSasomange.kolacicWindowCloseClick();
@@ -140,9 +140,13 @@ public class SasomangeTests extends BaseTest {
         Assert.assertEquals("Odabir kategorije\n" + "Vozila\n" + "Automobili\n" + "Polovni automobili"
                 ,dodajOglasOOglasuSectionPageSasomange.chosenCategoriesAndSubcategoriesTextGetText());
         dodajOglasOOglasuSectionPageSasomange.opstiPodaciOVozilu();
-         dodajOglasOOglasuSectionPageSasomange.nazadButtonHide();
-        dodajOglasOOglasuSectionPageSasomange.markaAutomobilaDropdownMenuSelect();
-         dodajOglasOOglasuSectionPageSasomange.modelDropdownAccessibleAftermarkaAutomobilaRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.nazad_I_NapredButtonHide();
+        dodajOglasOOglasuSectionPageSasomange.markaAutomobilaDropdownmenuRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.modelDropdownmenuAccessibleAftermarkaAutomobilaRandomClick();
         dodajOglasOOglasuSectionPageSasomange.gorivoDropdownMenuAccessibleAfterModelPickRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.oblikKaroserijeAccessibleAfterGorivoRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.brojVrataDropdownMenuAccessibleAfterOblikKaroserijeRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.godinaProizvodnjeDropdownMenuAccessibleAfterBrojVrataRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.tipInputFieldSendKeys("Cb1# .");
     }
 }
