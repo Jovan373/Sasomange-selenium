@@ -120,8 +120,8 @@ public class SasomangeTests extends BaseTest {
     }
     @Test public void placeAnAddWhileLoggedInSasomange(){
         homePageSasomange.ulogujSeButtonClick();
-        ulogujSePageSasomange.imejl_KorisnickoIme_InputFieldSendKeys("Registered mail");
-        ulogujSePageSasomange.lozinka_InputField("Valid password");
+        ulogujSePageSasomange.imejl_KorisnickoIme_InputFieldSendKeys("jojel.7233@gmail.com");
+        ulogujSePageSasomange.lozinka_InputField("Aa#@+ .1");
         ulogujSePageSasomange.prijaviSeButton_PrimaryClick();
         loggedInUserHomeSasomangePage.dodajOglasButtonClick();
         cokieBotPageSasomange.kolacicWindowCloseClick();
@@ -148,5 +148,14 @@ public class SasomangeTests extends BaseTest {
         dodajOglasOOglasuSectionPageSasomange.brojVrataDropdownMenuAccessibleAfterOblikKaroserijeRandomClick();
         dodajOglasOOglasuSectionPageSasomange.godinaProizvodnjeDropdownMenuAccessibleAfterBrojVrataRandomClick();
         dodajOglasOOglasuSectionPageSasomange.tipInputFieldSendKeys("Cb1# .");
+        dodajOglasOOglasuSectionPageSasomange.kliznaVrataButtonDaClick();
+        dodajOglasOOglasuSectionPageSasomange.kubikaza_cm3_InputFieldSendKeys("1");
+        dodajOglasOOglasuSectionPageSasomange.kapacitetPogonskeBaterije_kwhInputFieldSendKeys("23");
+        dodajOglasOOglasuSectionPageSasomange.predjeniKilometriInputFieldSendKeys("456");
+        dodajOglasOOglasuSectionPageSasomange.ekoloskaKategorijaVozilaDropDownMenuRandomPick();
+        dodajOglasOOglasuSectionPageSasomange.vrstaPogona4x4ButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.vrstaMenjacaButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.snagaMotora_kw_inputFieldSendKeys("567");
+        dodajOglasOOglasuSectionPageSasomange.brojBrzina_opcionoRandomClick();
     }
 }
