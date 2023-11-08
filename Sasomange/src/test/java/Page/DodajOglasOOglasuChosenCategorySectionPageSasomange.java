@@ -18,11 +18,13 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
 
     @FindBy(css = "[class=\"main-breadcrumbs-list\"]")
     WebElement chosenCategoriesAndSubcategoriesText;
-
-    @FindBy(xpath = "//div[@class='narrow half-column']//section[@class='single-dropdown']//div//span[@class='placeholder'][normalize-space()='Odaberi']")
+    //-------------OPSTI PODACI O VOZILU SECTION WEBELEMENTS------------------------------------------------------------
+    @FindBy(xpath = "//div[@class='narrow half-column']//section[@class='single-dropdown']//div//span[@class='placeholder']" +
+            "[normalize-space()='Odaberi']")
     WebElement markaAutomobilaDropdownMenu;
 
-    @FindBy(xpath = "//div[@data-attribute-type='dropDownSingleSelectOrFreeText']//section[@class='single-dropdown']//div//i[@class='dropdown-arrow icon-dropdown-arrow-bottom']")
+    @FindBy(xpath = "//div[@data-attribute-type='dropDownSingleSelectOrFreeText']//section[@class='single-dropdown']" +
+            "//div//i[@class='dropdown-arrow icon-dropdown-arrow-bottom']")
     WebElement modelAccessibleAftermarkaAutomobilaPick;
 
     @FindBy (xpath = "//section[@class='single-dropdown open']//section[@class='dropdown-content with-search']")
@@ -66,13 +68,113 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
 
     @FindBy (xpath = "//*[@class='ps dropdown-scroll-content theme-scrollbar ps--active-y'] //ul")
     WebElement markeAutomobilaOptionsUL;
+    //------------------------------------------------------------------------------------------------------------------
 
     @FindBy (css = "button[class='btn btn--type-primary step-next']")
     WebElement napredIButton;
 
     @FindBy(css = "button[class='btn button--type-bordered-tertiary step-back']")
     WebElement nazadButton;
+    //----------TEHNICKE KARAKTERISTIKE AUTOMOBILA WEBELEMENTS----------------------------------------------------------
+    @FindBy(xpath = "//div[@id='app']//div[1]//section[1]//ul[1]//li[1]//button[1]")
+    WebElement kliznaVrataButtonDa;
 
+    @FindBy(xpath = "//div[@id='app']//div[1]//section[1]//ul[1]//li[1]//button[1]")
+    WebElement kliznaVrataButtonNe;
+
+    @FindBy(css = "input[placeholder='Unesi (cm³)']")
+    WebElement kubikaza_cm3_InputField;
+
+    @FindBy(css = "input[placeholder='Unesi (kWh)']")
+    WebElement kapacitetPogonskeBaterije_kwhInputField;
+
+    @FindBy(xpath = "//button[normalize-space()='Prednji']")
+    WebElement vrstaPogonaPrednjiButton;
+
+    @FindBy(xpath = "//button[normalize-space()='Zadnji']")
+    WebElement vrstaPogonaZadnjiButton;
+
+    @FindBy(xpath = "//button[normalize-space()='4x4']")
+    WebElement vrstaPogona4x4Button;
+
+    @FindBy(css = "input[placeholder='Unesi (km)']")
+    WebElement predjeniKilometriInputField;
+
+    @FindBy(xpath = "//section[@data-section='mainLayout']//section[2]//section[1]//div[2]//div[6]//section[1]//div[1]//p[1]//i[1]")
+    WebElement ekoloskaKategorijaVozilaDropDownMenu;
+
+    @FindBy(xpath = "//section[@class='single-dropdown open']//section[@class='dropdown-content with-search']")
+    WebElement ekoloskaKategorijaVozilaDropDownMenuUL;
+
+    @FindBy (xpath = "//input[@placeholder='Unesi (kW)']")
+    WebElement snagaMotora_kw_inputField;
+
+    @FindBy(xpath = "//button[normalize-space()='Manuelni']")
+    WebElement vrstaMenjacaButton;
+
+    @FindBy(xpath = "//div[9]//section[1]//div[1]//p[1]//i[1]")
+    WebElement brojBrzina_opcionoDropDownMenu;
+
+    @FindBy(xpath = "//section[@class='single-dropdown open']//section[@class='dropdown-content with-search']")
+    WebElement brojBrzina_opcionoDropDownMenuUL;
+
+    @FindBy(xpath = "//div[10]//section[1]//div[1]//p[1]//i[1]")
+    WebElement brojSedistaDropDownMenu;
+
+    @FindBy(xpath = "//section[@class='single-dropdown open']//section[@class='dropdown-content with-search']")
+    WebElement brojSedistaDropDownMenuUL;
+
+    @FindBy(xpath = "//div[11]//section[1]//div[1]//p[1]//i[1]")
+    WebElement bojaDropDownMenu;
+
+    @FindBy(xpath = "//section[@class='dropdown-content with-search small-icon']")
+    WebElement bojaDropDownMenuUL;
+
+    @FindBy(xpath = "//div[14]//section[1]//div[1]//p[1]//i[1]")
+    WebElement registrovanDoDropDownMenu;
+
+    @FindBy(xpath = "//section[@class='single-dropdown open']//section[@class='dropdown-content with-search']")
+    WebElement registrovanDoDropDownMenuUL;
+
+    @FindBy(xpath = "//div[12]//section[1]//ul[1]//li[1]//button[1]")
+    WebElement metalic_opcionoButton;
+
+    @FindBy(xpath = "//div[13]//section[1]//ul[1]//li[2]//button[1]")
+    WebElement mat_OpcionoButton;
+
+    @FindBy(xpath = "//button[normalize-space()='Automatska']")
+    WebElement klima_opcionoButton;
+
+    @FindBy(xpath = "//div[16]//section[1]//ul[1]//li[1]//button[1]")
+    WebElement zamenaButton;
+
+    public void metalic_opcionoButton(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(metalic_opcionoButton)).click();
+    }
+
+    public void mat_OpcionoButton(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(mat_OpcionoButton)).click();
+    }
+
+    public void brojBrzina_opcionoRandomClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(brojBrzina_opcionoDropDownMenu)).click();
+        WebElement[]checkboxBrojBrzina = brojBrzina_opcionoDropDownMenuUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String brojBrzinaOptions = brojBrzina_opcionoDropDownMenuUL.getText();
+        System.out.println("Broj brzina all options to pick: " + brojBrzinaOptions);
+        Random broj = new Random();
+        int randomIndex = broj.nextInt(checkboxBrojBrzina.length);
+        String randomPickBrojBrzina = checkboxBrojBrzina[randomIndex].getText();
+        System.out.println("Random pick from modeli options: " + randomPickBrojBrzina);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxBrojBrzina[randomIndex]),0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxBrojBrzina[randomIndex])).click();
+    }
+    public void snagaMotora_kw_inputFieldSendKeys(String Unesi_kw){
+        wdWait.until(ExpectedConditions.visibilityOf(snagaMotora_kw_inputField)).sendKeys(Unesi_kw);
+    }
+
+    public void vrstaMenjacaButtonClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(vrstaMenjacaButton)).click();
+    }
     public void opstiPodaciOVozilu() {
         wdWait.until(ExpectedConditions.visibilityOf(opstiPodaciOVozilu));
         actions.scrollToElement(opstiPodaciOVozilu).scrollByAmount(0, 200).perform();
@@ -182,4 +284,41 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
         wdWait.until(ExpectedConditions.visibilityOf(tipInputField));
         tipInputField.sendKeys(Primer_za_Citroen_C3_Exclusive_dizel_1400cm3_obeležje_je_14_HDI_Exclusive);
     }
+    public void kliznaVrataButtonDaClick(){
+        wdWait.until(ExpectedConditions.visibilityOf(kliznaVrataButtonDa)).click();
+    }
+    public void kubikaza_cm3_InputFieldSendKeys(String Unesi_cm3 ){
+        wdWait.until(ExpectedConditions.visibilityOf(kubikaza_cm3_InputField));
+        kubikaza_cm3_InputField.sendKeys(Unesi_cm3);
+
+    }
+    public void kapacitetPogonskeBaterije_kwhInputFieldSendKeys(String Unesi_kwh){
+        wdWait.until(ExpectedConditions.visibilityOf(kapacitetPogonskeBaterije_kwhInputField));
+        kapacitetPogonskeBaterije_kwhInputField.sendKeys(Unesi_kwh);
+    }
+    public void vrstaPogonaPrednjiButtonClick(){
+        wdWait.until(ExpectedConditions.visibilityOf(vrstaPogona4x4Button));
+        actions.scrollToElement(vrstaPogona4x4Button).click().perform();
+    }
+    public void predjeniKilometriInputFieldSendKeys(String Unesi_kw){
+        wdWait.until(ExpectedConditions.visibilityOf(predjeniKilometriInputField)).sendKeys(Unesi_kw);
+    }
+    public void ekoloskaKategorijaVozilaDropDownMenuRandomPick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(ekoloskaKategorijaVozilaDropDownMenu)).click();
+        wdWait.until(ExpectedConditions.visibilityOf(ekoloskaKategorijaVozilaDropDownMenuUL));
+        WebElement[]checkboxekoloskaKategorijaVozila = ekoloskaKategorijaVozilaDropDownMenuUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String ekoloskaKategorijaVozilaOptions = ekoloskaKategorijaVozilaDropDownMenuUL.getText();
+        System.out.println("Ekoloska kategorija vozila: " + ekoloskaKategorijaVozilaOptions);
+        Random e = new Random();
+        int randomIndex = e.nextInt(checkboxekoloskaKategorijaVozila.length);
+        String randomPickEURO = checkboxekoloskaKategorijaVozila[randomIndex].getText();
+        System.out.println("Random pick from EURO options: " + randomPickEURO);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxekoloskaKategorijaVozila[randomIndex]),0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxekoloskaKategorijaVozila[randomIndex])).click();
+    }
+    public void vrstaPogona4x4ButtonClick(){
+        wdWait.until(ExpectedConditions.visibilityOf(vrstaPogona4x4Button)).click();
+    }
+
+
 }
