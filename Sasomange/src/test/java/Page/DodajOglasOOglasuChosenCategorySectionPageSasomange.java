@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
 import java.util.Random;
 
 public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTest {
@@ -142,23 +143,180 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
     @FindBy(xpath = "//div[13]//section[1]//ul[1]//li[2]//button[1]")
     WebElement mat_OpcionoButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Automatska']")
+    @FindBy(xpath = "//button[normalize-space()='Nema']")
     WebElement klima_opcionoButton;
 
     @FindBy(xpath = "//div[16]//section[1]//ul[1]//li[1]//button[1]")
     WebElement zamenaButton;
+    //---------------------OPREMA WEBELEMENTS---------------------------------------------------------------------------
+    @FindBy(xpath = "//div[@class='full-column inline-checkbox']//section[@class='checkbox-section']")
+    WebElement stanjeVozila_opcionoSquareCheckboxes;
 
-    public void metalic_opcionoButton(){
-        wdWait.until(ExpectedConditions.elementToBeClickable(metalic_opcionoButton)).click();
+    @FindBy(xpath = "//section[@class='dynamic-configuration']//div[@class='section-content-wrapper']//div[1]//section[1]")
+    WebElement sigurnost_OpcionoSquarecheckboxes;
+
+    @FindBy(xpath = "//div[@class='section-content-wrapper']//div[2]//section[1]")
+    WebElement airbag_Opciono;
+
+    @FindBy(xpath = "//div[@class='section-content-wrapper']//div[3]//section[1]")
+    WebElement autoRadio_Opciono;
+
+    @FindBy(xpath = "//div[@class='section-content-wrapper']//div[4]//section[1]")
+    WebElement dodatnaOprema_Opciono;
+//----------------------------------------------------------------------------------------------------------------------
+    @FindBy(xpath = "//div[@class='section-content-wrapper']//div[5]//section[1]//label[1]//input[1]")
+    WebElement brojSasije_OpcionoInputField;
+
+    @FindBy(xpath = "//div[@class='section-content-wrapper']//div[6]//section[1]//label[1]//input[1]")
+    WebElement brojRegistarcijeVozila_OpcionoInputField;
+//----------------------------------------------------------------------------------------------------------------------
+//---------------------------------INFORMACIJE O OGLASU WEBELEMENTS-----------------------------------------------------
+    @FindBy(xpath = "//textarea[@placeholder='Unesi naziv oglasa']")
+    WebElement nazivInputField;
+
+    @FindBy(xpath = "//div[@class='ql-editor ql-blank']")
+    WebElement tekstOglasa_AreaInputField;
+
+    @FindBy(css = "[placeholder=\"Unesi cenu (EUR)\"]")
+    WebElement unesiCenu_InputField;
+
+    public void brojSasije_OpcionoInputFieldSendKeys(String Broj_Sasije){
+        wdWait.until(ExpectedConditions.visibilityOf(brojSasije_OpcionoInputField)).sendKeys(Broj_Sasije);
+
     }
 
-    public void mat_OpcionoButton(){
-        wdWait.until(ExpectedConditions.elementToBeClickable(mat_OpcionoButton)).click();
+    public void brojRegistarcijeVozila_OpcionoInputFieldSendKeys(String Broj_Registracije){
+        wdWait.until(ExpectedConditions.visibilityOf(brojRegistarcijeVozila_OpcionoInputField)).sendKeys(Broj_Registracije);
+    }
+
+    public void tekstOglasa_AreaInputFieldSendKeys(String Tekst_Oglasa){
+        wdWait.until(ExpectedConditions.visibilityOf(tekstOglasa_AreaInputField)).sendKeys(Tekst_Oglasa);
+    }
+
+    public void airbag_OpcionoSquareCheckBoxesClick() {
+        wdWait.until(ExpectedConditions.visibilityOf(airbag_Opciono));
+        List<WebElement> squareCheckboxes = airbag_Opciono.findElements(
+                By.cssSelector(".checkbox-sign.squared-checkbox-sign"));
+        for (WebElement checkbox : squareCheckboxes) {
+            scrollIntoView(checkbox);
+            wdWait.until(ExpectedConditions.elementToBeClickable(checkbox)).click();
+        }
+    }
+
+    public void autoRadio_OpcionoClick(){
+        wdWait.until(ExpectedConditions.visibilityOf(autoRadio_Opciono));
+        List<WebElement> squareCheckboxes = autoRadio_Opciono.findElements(By.cssSelector(".checkbox-sign.squared-checkbox-sign"));
+        for (WebElement checkbox : squareCheckboxes){
+            scrollIntoView(checkbox);
+            wdWait.until(ExpectedConditions.elementToBeClickable(checkbox)).click();
+        }
+    }
+
+    public void dodatnaOprema_OpcionoClick() {
+        wdWait.until(ExpectedConditions.visibilityOf(dodatnaOprema_Opciono));
+        List<WebElement> squareCheckboxes = dodatnaOprema_Opciono.findElements(By.cssSelector(".checkbox-sign.squared-checkbox-sign"));
+        for (WebElement checkbox : squareCheckboxes) {
+            scrollIntoView(checkbox);
+            wdWait.until(ExpectedConditions.elementToBeClickable(checkbox)).click();
+        }
+    }
+
+    private void scrollIntoView(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center', inline: 'center'});", element);
+    }
+
+    public void scroll(){
+        actions.scrollByAmount(0,500).perform();
+    }
+
+    public void sigurnost_OpcionoSquarecheckboxesClick() {
+        wdWait.until(ExpectedConditions.visibilityOf(sigurnost_OpcionoSquarecheckboxes));
+        List<WebElement> squareCheckboxes = sigurnost_OpcionoSquarecheckboxes.findElements(
+                By.cssSelector(".checkbox-sign.squared-checkbox-sign"));
+
+        for (WebElement checkbox : squareCheckboxes) {
+            checkbox.click();
+        }
+    }
+
+    public void stanjeVozila_opcionoSquareCheckboxesClick() {
+        wdWait.until(ExpectedConditions.visibilityOf(stanjeVozila_opcionoSquareCheckboxes));
+        List<WebElement> squareCheckboxes = stanjeVozila_opcionoSquareCheckboxes.findElements(
+                By.cssSelector(".checkbox-sign.squared-checkbox-sign"));
+        for (WebElement checkbox : squareCheckboxes) {
+            checkbox.click();
+        }
+}
+
+    public void registrovanDoDropDownMenuRandomPick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(registrovanDoDropDownMenu)).click();
+        WebElement[]checkboxRegistrovanDo = registrovanDoDropDownMenuUL
+                .findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String registrovanDoOptions = registrovanDoDropDownMenuUL.getText();
+        System.out.println("Registrovan do all options to pick: " + registrovanDoOptions);
+        Random registrovanDo = new Random();
+        int randomIndex = registrovanDo.nextInt(checkboxRegistrovanDo.length);
+        String randomPickRegistrovanDo = checkboxRegistrovanDo[randomIndex].getText();
+        System.out.println("Random pick from registrovan do options: " + randomPickRegistrovanDo);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxRegistrovanDo[randomIndex])
+                ,0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxRegistrovanDo[randomIndex])).click();
+    }
+
+    public void brojSedistaDropDownMenuRandomPick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(brojSedistaDropDownMenu));
+        actions.moveToElement(brojSedistaDropDownMenu).perform();
+        brojSedistaDropDownMenu.click();
+        WebElement[]checkboxBrojSedista = brojSedistaDropDownMenuUL
+                .findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String brojSedistaOptions = brojBrzina_opcionoDropDownMenuUL.getText();
+        System.out.println("Broj sedista all options to pick: " + brojSedistaOptions);
+        Random brojSedista = new Random();
+        int randomIndex = brojSedista.nextInt(checkboxBrojSedista.length);
+        String randomPickBrojSedista = checkboxBrojSedista[randomIndex].getText();
+        System.out.println("Random pick from sedista options: " + randomPickBrojSedista);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxBrojSedista[randomIndex])
+                ,0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxBrojSedista[randomIndex])).click();
+    }
+
+    public void bojaDropDownMenuRandomPick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(bojaDropDownMenu)).click();
+        WebElement[]checkboxBoja = bojaDropDownMenuUL
+                .findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        String bojaOptions = bojaDropDownMenuUL.getText();
+        System.out.println("boja all options to pick: " + bojaOptions);
+        Random boja = new Random();
+        int randomIndex = boja.nextInt(checkboxBoja.length);
+        String randomPickBoja = checkboxBoja[randomIndex].getText();
+        System.out.println("Random pick from boja options: " + randomPickBoja);
+        actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxBoja[randomIndex])
+                ,0,100).perform();
+        wdWait.until(ExpectedConditions.elementToBeClickable(checkboxBoja[randomIndex])).click();
+    }
+
+    public void metalic_opcionoButtonClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(metalic_opcionoButton));
+        actions.moveToElement(metalic_opcionoButton).click();
+    }
+
+    public void mat_OpcionoButtonClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(mat_OpcionoButton));
+        actions.moveToElement(mat_OpcionoButton).click();
+    }
+    public void klima_opcionoButtonClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(klima_opcionoButton));
+        actions.scrollToElement(klima_opcionoButton).click();
+    }
+    public void zamenaButtonClick(){
+        wdWait.until(ExpectedConditions.elementToBeClickable(zamenaButton));
+        actions.scrollToElement(zamenaButton).click();
     }
 
     public void brojBrzina_opcionoRandomClick(){
         wdWait.until(ExpectedConditions.elementToBeClickable(brojBrzina_opcionoDropDownMenu)).click();
-        WebElement[]checkboxBrojBrzina = brojBrzina_opcionoDropDownMenuUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        WebElement[]checkboxBrojBrzina = brojBrzina_opcionoDropDownMenuUL
+                .findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
         String brojBrzinaOptions = brojBrzina_opcionoDropDownMenuUL.getText();
         System.out.println("Broj brzina all options to pick: " + brojBrzinaOptions);
         Random broj = new Random();
@@ -204,7 +362,8 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
         wdWait.until(ExpectedConditions.visibilityOf(markaAutomobilaDropdownMenu));
         markaAutomobilaDropdownMenu.click();
         wdWait.until(ExpectedConditions.visibilityOf(markeAutomobilaOptionsUL));
-        WebElement[] checkboxMarke = markeAutomobilaOptionsUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
+        WebElement[] checkboxMarke = markeAutomobilaOptionsUL
+                .findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
         String markeOptions = markeAutomobilaOptionsUL.getText();
         System.out.println("Marke automobila all options to pick: " + markeOptions);
         Random r = new Random();
@@ -247,8 +406,8 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
         WebElement[]checkboxOblikKaroserije = oblikKaroserijeAccessibleAfterGorivoRandomClickUL.findElements(By.cssSelector(".checkbox-sign.round-checkbox-sign")).toArray(new WebElement[0]);
         String karoserijaOptions = oblikKaroserijeAccessibleAfterGorivoRandomClickUL.getText();
         System.out.println("Oblik karoserije options: " + karoserijaOptions);
-        Random m = new Random();
-        int randomIndex = m.nextInt(checkboxOblikKaroserije.length);
+        Random h = new Random();
+        int randomIndex = h.nextInt(checkboxOblikKaroserije.length);
         String randomPickKaroserija = checkboxOblikKaroserije[randomIndex].getText();
         System.out.println("Random pick from oblik karoserije options: " + randomPickKaroserija);
         actions.scrollFromOrigin(WheelInput.ScrollOrigin.fromElement(checkboxOblikKaroserije[randomIndex]),0,100).perform();
