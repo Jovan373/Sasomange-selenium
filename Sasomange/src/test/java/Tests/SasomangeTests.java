@@ -157,5 +157,25 @@ public class SasomangeTests extends BaseTest {
         dodajOglasOOglasuSectionPageSasomange.vrstaMenjacaButtonClick();
         dodajOglasOOglasuSectionPageSasomange.snagaMotora_kw_inputFieldSendKeys("567");
         dodajOglasOOglasuSectionPageSasomange.brojBrzina_opcionoRandomClick();
+        dodajOglasOOglasuSectionPageSasomange.metalic_opcionoButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.mat_OpcionoButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.metalic_opcionoButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.brojSedistaDropDownMenuRandomPick();
+        dodajOglasOOglasuSectionPageSasomange.bojaDropDownMenuRandomPick();
+        dodajOglasOOglasuSectionPageSasomange.registrovanDoDropDownMenuRandomPick();
+        dodajOglasOOglasuSectionPageSasomange.klima_opcionoButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.zamenaButtonClick();
+        dodajOglasOOglasuSectionPageSasomange.stanjeVozila_opcionoSquareCheckboxesClick();
+        dodajOglasOOglasuSectionPageSasomange.scroll();
+        dodajOglasOOglasuSectionPageSasomange.sigurnost_OpcionoSquarecheckboxesClick();
+        dodajOglasOOglasuSectionPageSasomange.scroll();
+        dodajOglasOOglasuSectionPageSasomange.airbag_OpcionoSquareCheckBoxesClick();
+        dodajOglasOOglasuSectionPageSasomange.autoRadio_OpcionoClick();
+        dodajOglasOOglasuSectionPageSasomange.dodatnaOprema_OpcionoClick();
+        dodajOglasOOglasuSectionPageSasomange.brojSasije_OpcionoInputFieldSendKeys("128376asdjhkajshfk@#$# >");
+        dodajOglasOOglasuSectionPageSasomange.brojRegistarcijeVozila_OpcionoInputFieldSendKeys("Ni39398479");
+        dodajOglasOOglasuSectionPageSasomange.scroll();
+        dodajOglasOOglasuSectionPageSasomange.tekstOglasa_AreaInputFieldSendKeys("Tekst oglas 123@#$%");
+
     }
 }
