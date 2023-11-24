@@ -1,14 +1,18 @@
 package Page;
 
 import Base.BaseTest;
+import org.bouncycastle.jcajce.provider.asymmetric.elgamal.KeyFactorySpi;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 
@@ -167,6 +171,12 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
     @FindBy(xpath = "//div[@class='section-content-wrapper']//div[5]//section[1]//label[1]//input[1]")
     WebElement brojSasije_OpcionoInputField;
 
+    @FindBy(css = "[data-section=\"mainLayout\"]")
+    WebElement layout;
+
+    @FindBy(css = "class=\"btn btn--type-primary step-next\"")
+    WebElement nastaviPrimaryButtonNext;
+
     @FindBy(xpath = "//div[@class='section-content-wrapper']//div[6]//section[1]//label[1]//input[1]")
     WebElement brojRegistarcijeVozila_OpcionoInputField;
 //----------------------------------------------------------------------------------------------------------------------
@@ -177,16 +187,68 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
     @FindBy(xpath = "//div[@class='ql-editor ql-blank']")
     WebElement tekstOglasa_AreaInputField;
 
-    @FindBy(css = "[placeholder=\"Unesi cenu (EUR)\"]")
-    WebElement unesiCenu_InputField;
+
+    @FindBy (xpath = "//input[@placeholder='Unesi cenu (EUR)']")
+    WebElement cenaInputField;
+
+    @FindBy(xpath = "//section[@class='price-section']//label[1]//span[1]")
+    WebElement umestoCeneOptionCheckbox;
+
+    @FindBy(css = "[placeholder=\"Unesi šifru artikla\"]")
+    WebElement unesiSifruArtikla_InputField;
+//----------------------------------------------------------------------------------------------------------------------
+//------------------------LOKACIJA PREDMETA OGLASAVANJA WEBELEMENTS-----------------------------------------------------
+    @FindBy(xpath = "//div[@class='country-dropdown-selected']//i[@class='drop-icon icon-dropdown-arrow-bottom']")
+    WebElement zemljaDropDownMenu;
+
+    @FindBy(id = "searchLocations")
+    WebElement lokacijaInputField;
+
+    @FindBy(xpath = " \t//*[normalize-space()='Beograd']")
+    WebElement simpleTypeHeadOpenForBeogradInput;
+
+    public void simpleTypeHeadOpenForBeogradInputClick(){
+        wdWait.until(ExpectedConditions.visibilityOf(simpleTypeHeadOpenForBeogradInput)).click();
+    }
+    public void lokacijaInputFieldSendKeys(String Enter_location){
+        wdWait.until(ExpectedConditions.visibilityOf(lokacijaInputField));
+        scrollIntoView(lokacijaInputField);
+        lokacijaInputField.sendKeys(Enter_location);
+        lokacijaInputField.click();
+    }
+    public void unesiSifruArtiklaSendKeys(String Unesi_sifru_artikla_maxChar30All){
+        wdWait.until(ExpectedConditions.visibilityOf(unesiSifruArtikla_InputField));
+        actions.scrollToElement(unesiSifruArtikla_InputField).click().perform();
+        unesiSifruArtikla_InputField.sendKeys(Unesi_sifru_artikla_maxChar30All);
+
+
+    }
+
+    public void umestoCeneOptionCheckboxClick(){
+        wdWait.until(ExpectedConditions.visibilityOf(umestoCeneOptionCheckbox));
+        umestoCeneOptionCheckbox.click();
+    }
+
+    public void cenaInputFieldSendKeys(String Unesi_cenu_bez_tacke_razmaka_ili_zareza_maxChar15){
+    wdWait.until(ExpectedConditions.visibilityOf(cenaInputField));
+    scrollIntoView(cenaInputField);
+    cenaInputField.click();
+    actions.sendKeys(Unesi_cenu_bez_tacke_razmaka_ili_zareza_maxChar15);
+    }
 
     public void brojSasije_OpcionoInputFieldSendKeys(String Broj_Sasije){
-        wdWait.until(ExpectedConditions.visibilityOf(brojSasije_OpcionoInputField)).sendKeys(Broj_Sasije);
+        wdWait.until(ExpectedConditions.visibilityOf(brojSasije_OpcionoInputField));
+        scrollIntoView(brojSasije_OpcionoInputField);
+        brojSasije_OpcionoInputField.click();
+        actions.sendKeys(Broj_Sasije).perform();
 
     }
 
     public void brojRegistarcijeVozila_OpcionoInputFieldSendKeys(String Broj_Registracije){
-        wdWait.until(ExpectedConditions.visibilityOf(brojRegistarcijeVozila_OpcionoInputField)).sendKeys(Broj_Registracije);
+        wdWait.until(ExpectedConditions.visibilityOf(brojRegistarcijeVozila_OpcionoInputField));
+        scrollIntoView(brojRegistarcijeVozila_OpcionoInputField);
+        brojRegistarcijeVozila_OpcionoInputField.click();
+        actions.sendKeys(Broj_Registracije).perform();
     }
 
     public void tekstOglasa_AreaInputFieldSendKeys(String Tekst_Oglasa){
@@ -222,7 +284,8 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
     }
 
     private void scrollIntoView(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center', inline: 'center'});", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView" +
+                "({behavior: 'auto', block: 'center', inline: 'center'});", element);
     }
 
     public void scroll(){
@@ -357,6 +420,12 @@ public class DodajOglasOOglasuChosenCategorySectionPageSasomange extends BaseTes
         jsExecutor.executeScript("arguments[0].style.display = 'none';", nazadButton);
         jsExecutor.executeScript("arguments[0].style.display = 'none';", napredIButton);
     }
+    public void nazad_I_NapredButtonDisplay(){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].style.display = 'block';", nazadButton);
+        jsExecutor.executeScript("arguments[0].style.display = 'block';", napredIButton);
+    }
+
 
     public void markaAutomobilaDropdownmenuRandomClick() {
         wdWait.until(ExpectedConditions.visibilityOf(markaAutomobilaDropdownMenu));
