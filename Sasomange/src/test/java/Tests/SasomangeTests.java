@@ -4,6 +4,7 @@ import Page.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Keys;
 
 public class SasomangeTests extends BaseTest {
 
@@ -17,6 +18,8 @@ public class SasomangeTests extends BaseTest {
     CokieBotPageSasomange cokieBotPageSasomange;
     MojSasomangeDodajOglasIzborKategorijeSectionPage mojSasomangeDodajOglasIzborKategorijeSectionPage;
     DodajOglasOOglasuChosenCategorySectionPageSasomange dodajOglasOOglasuSectionPageSasomange;
+    OOglasivacuPageSasomange oOglasivacuPageSasomange;
+    UspesnoPostavljenOglasPageSasomange uspesnoPostavljenOglasPageSasomange;
     @Before
     public void setUpTest(){
 
@@ -30,6 +33,9 @@ public class SasomangeTests extends BaseTest {
         cokieBotPageSasomange = new CokieBotPageSasomange();
         mojSasomangeDodajOglasIzborKategorijeSectionPage = new MojSasomangeDodajOglasIzborKategorijeSectionPage();
         dodajOglasOOglasuSectionPageSasomange = new DodajOglasOOglasuChosenCategorySectionPageSasomange();
+        oOglasivacuPageSasomange = new OOglasivacuPageSasomange();
+        uspesnoPostavljenOglasPageSasomange = new UspesnoPostavljenOglasPageSasomange();
+
     }
     //-------------------------------------POSITIVE TESTS---------------------------------------------------------------
     @Test public void registerOnSasomange() {
@@ -176,6 +182,27 @@ public class SasomangeTests extends BaseTest {
         dodajOglasOOglasuSectionPageSasomange.brojRegistarcijeVozila_OpcionoInputFieldSendKeys("Ni39398479");
         dodajOglasOOglasuSectionPageSasomange.scroll();
         dodajOglasOOglasuSectionPageSasomange.tekstOglasa_AreaInputFieldSendKeys("Tekst oglas 123@#$%");
-
+        dodajOglasOOglasuSectionPageSasomange.cenaInputFieldSendKeys("123456789123415");
+        dodajOglasOOglasuSectionPageSasomange.umestoCeneOptionCheckboxClick();
+        dodajOglasOOglasuSectionPageSasomange.unesiSifruArtiklaSendKeys("1Qw@# rtyuiop[;lkjhgfdsda.cb30");
+        dodajOglasOOglasuSectionPageSasomange.lokacijaInputFieldSendKeys("Beograd");
+        dodajOglasOOglasuSectionPageSasomange.simpleTypeHeadOpenForBeogradInputClick();
+        dodajOglasOOglasuSectionPageSasomange.nazad_I_NapredButtonDisplay();
+        mojSasomangeDodajOglasIzborKategorijeSectionPage.nastaviButtonPrimaryClick();
+        Assert.assertTrue(oOglasivacuPageSasomange.ostaoJosJedanKorakTextIsDisplayed());
+        Assert.assertEquals("Ostao je još samo jedan korak!\n" + "\n" +
+                "Na osnovu Člana 45. Zakona o oglašavanju Republike Srbije, da bi ti oglas bio objavljen na portalu" +
+                " Sasomange.rs, prilikom postavljanja oglasa treba tačno da popuniš identifikaciju koja sledi." +
+                " Podaci koje nam poveriš neće biti javno dostupni na portalu, tretiraćemo ih kao poverljive, " +
+                "i u skladu sa Zakonom o zaštiti podataka o ličnosti.",oOglasivacuPageSasomange.ostaoJosJedanKorakTextGetText());
+        oOglasivacuPageSasomange.fizickoLiceOptionClick();
+        oOglasivacuPageSasomange.imeInputFieldSendKeys("A");
+        oOglasivacuPageSasomange.prezimeInputFieldSendKeys("A b-v");
+        oOglasivacuPageSasomange.kontaktTelefoniInputFieldSendKeys("1234567");
+        oOglasivacuPageSasomange.automatskiObnoviOglasCheckBoxUnTick();
+        mojSasomangeDodajOglasIzborKategorijeSectionPage.nastaviButtonPrimaryClick();
+        Assert.assertTrue(uspesnoPostavljenOglasPageSasomange.uspesanOglasPostavljenTextIsDisplayed());
+        Assert.assertEquals("Čestitamo, tvoj oglas je uspešno objavljen!",
+                uspesnoPostavljenOglasPageSasomange.uspesanOglasPostavljenTextGetText());
     }
 }
